@@ -1,7 +1,6 @@
 import { IonIcon } from "@ionic/react";
 import { calendarOutline, timeOutline, play } from "ionicons/icons";
 
-import MainNavigation from "./MainNavigation";
 import Movies from "./Movies";
 import Services from "./Services";
 import Footer from "./Footer";
@@ -9,8 +8,6 @@ import Footer from "./Footer";
 const Header = () => {
   return (
     <>
-      <MainNavigation />
-
       <section class="hero">
         <div class="container">
           <div class="hero-content">

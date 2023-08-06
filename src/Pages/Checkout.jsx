@@ -6,7 +6,6 @@ import { PaystackButton } from "react-paystack";
 import { db } from "../firebase";
 import { AuthContext } from "../store/AuthContext";
 import { useNavigate } from "react-router-dom";
-import MainNavigation from "../Layout/MainNavigation";
 
 import { Email } from "../Layout/Helper";
 
@@ -131,7 +130,6 @@ export default function Checkout() {
 
   return (
     <>
-      <MainNavigation />
       <h1 className="text-center pt-3 opacity-95 text-2xl text-white">
         Checkout
       </h1>
