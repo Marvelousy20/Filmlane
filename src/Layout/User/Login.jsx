@@ -3,7 +3,7 @@ import { Form, Link, useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../../store/AuthContext";
 import AuthLoader from "../UI/AuthLoader";
-import MainNavigation from "../MainNavigation";
+
 
 const Login = () => {
   const [error, setError] = useState("");
@@ -34,7 +34,7 @@ const Login = () => {
 
   return (
     <>
-      <MainNavigation />
+      
       <div className="text-center w-100 mt-20 mb-20 text-white">
         <div className="inline-block border border-gray-600 rounded-md mb-2">
           {error && (

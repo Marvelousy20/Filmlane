@@ -178,7 +178,9 @@ const Navbar = () => {
 
         {currentUser && currentUser.email === "dayoogini@gmail.com" ? (
           <li className="p-3 border-b border-gray-600">
-            <Link to={"/upload-movie"}>Upload Movie</Link>
+            <Link to={"/upload-movie"} onClick={toggleSideBar}>
+              Upload Movie
+            </Link>
           </li>
         ) : (
           ""
@@ -186,10 +188,12 @@ const Navbar = () => {
 
         <li className="p-3 border-b border-gray-600">
           {currentUser ? (
-            <button onClick={handleLogout}>Log out</button>
+            <button onClick={handleLogout} onClick={toggleSideBar}>
+              Log out
+            </button>
           ) : (
             <Link to={"/sign-in"}>
-              <button>Sign in</button>
+              <button onClick={toggleSideBar}>Sign in</button>
             </Link>
           )}
         </li>

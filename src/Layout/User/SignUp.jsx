@@ -4,7 +4,6 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { AuthContext } from "../../store/AuthContext";
 import AuthLoader from "../UI/AuthLoader";
-import MainNavigation from "../MainNavigation";
 
 const SignUp = () => {
   const [error, setError] = useState("");
@@ -59,7 +58,6 @@ const SignUp = () => {
 
   return (
     <>
-      <MainNavigation />
       <div className="text-center w-100 mt-6 mb-8">
         <div className="inline-block border border-gray-600 rounded-md mb-2 text-white">
           {error && (

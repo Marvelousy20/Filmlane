@@ -6,7 +6,6 @@ import { db, storage } from "../firebase";
 import { uploadBytes, ref, getDownloadURL } from "firebase/storage";
 
 import { AuthContext } from "../store/AuthContext";
-import MainNavigation from "../Layout/MainNavigation";
 import AuthLoader from "../Layout/UI/AuthLoader";
 
 const UploadMovie = () => {
@@ -80,8 +79,6 @@ const UploadMovie = () => {
 
   return (
     <>
-      <MainNavigation />
-
       <section className="text-white mt-2">
         <div className="xs:w-[85%] md:w-[75%] lg:w-[60%] mx-auto ">
           <h2 className="text-center text-3xl font-bold">Upload Movie</h2>
