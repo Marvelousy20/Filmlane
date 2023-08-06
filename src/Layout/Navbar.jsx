@@ -188,7 +188,7 @@ const Navbar = () => {
 
         <li className="p-3 border-b border-gray-600">
           {currentUser ? (
-            <button onClick={handleLogout} onClick={toggleSideBar}>
+            <button onClick={handleLogout}>
               Log out
             </button>
           ) : (
