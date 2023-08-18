@@ -77,15 +77,13 @@ const Navbar = () => {
             </Link>
           </li>
 
-          {currentUser && currentUser.email === "dayoogini@gmail.com" ? (
+          {currentUser &&
             <li>
               <Link to={"/upload-movie"} class="navbar-link">
                 Upload Movie
               </Link>
             </li>
-          ) : (
-            ""
-          )}
+          }
 
           {currentUser ? (
             <button onClick={handleLogout} class="btn btn-primary">
@@ -176,15 +174,13 @@ const Navbar = () => {
           </Link>
         </li>
 
-        {currentUser && currentUser.email === "dayoogini@gmail.com" ? (
+        {currentUser &&
           <li className="p-3 border-b border-gray-600">
             <Link to={"/upload-movie"} onClick={toggleSideBar}>
               Upload Movie
             </Link>
           </li>
-        ) : (
-          ""
-        )}
+        }
 
         <li className="p-3 border-b border-gray-600">
           {currentUser ? (
