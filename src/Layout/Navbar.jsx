@@ -77,7 +77,7 @@ const Navbar = () => {
             </Link>
           </li>
 
-          {currentUser &&
+          {currentUser && currentUser.email === 'dayoogini@gmail.com' &&
             <li>
               <Link to={"/upload-movie"} class="navbar-link">
                 Upload Movie
@@ -174,7 +174,7 @@ const Navbar = () => {
           </Link>
         </li>
 
-        {currentUser &&
+        {currentUser && currentUser.email === 'dayoogini@gmail.com' &&
           <li className="p-3 border-b border-gray-600">
             <Link to={"/upload-movie"} onClick={toggleSideBar}>
               Upload Movie
