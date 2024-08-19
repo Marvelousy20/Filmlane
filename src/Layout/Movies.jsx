@@ -4,11 +4,12 @@ import upcoming1 from "../assets/upcoming-1.png";
 import upcoming2 from "../assets/upcoming-2.png";
 import upcoming3 from "../assets/upcoming-3.png";
 import upcoming4 from "../assets/upcoming-4.png";
+import ShowingMovies from "./ShowingMovies";
 
 const Movies = () => {
   return (
     <>
-      <section class="upcoming" id="movies">
+      {/* <section class="upcoming" id="movies">
         <div class="container">
           <div class="flex-wrapper">
             <div class="title-wrapper">
@@ -172,7 +173,8 @@ const Movies = () => {
             </li>
           </ul>
         </div>
-      </section>
+      </section> */}
+      <ShowingMovies />
     </>
   );
 };

@@ -21,6 +21,7 @@ const MovieDetails = () => {
   const [loading, setLoading] = useState(false);
   const [movieQty, setMovieQty] = useState(1);
   const [movie, setMovie] = useState({});
+  const [ticketsLeft, setTicketsLeft] = useState(50);
 
   const { movieId } = useParams();
   const moviesRef = collection(db, "Movies");
@@ -41,6 +42,7 @@ const MovieDetails = () => {
           user: currentUser.email,
         });
         setLoading(false);
+        setTicketsLeft(ticketsLeft - movieQty);
         navigate("cart");
       } catch (err) {
         console.log(err.message);
@@ -180,6 +182,8 @@ const MovieDetails = () => {
 
                   <span>{loading ? <AuthLoader /> : "Buy Ticket"}</span>
                 </button>
+
+                <div className="text-white">Tickets left: {ticketsLeft}</div>
               </div>
             </div>
           </div>
