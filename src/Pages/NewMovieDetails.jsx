@@ -32,9 +32,10 @@ const NewMovieDetails = () => {
         const storedTickets = localStorage.getItem(`ticketsLeft-${movieId}`);
         return storedTickets ? parseInt(storedTickets, 10) : 50;
     });
+    const [modalInfo, setModalInfo] = useState({ isOpen: false, message: '', type: 'success' });
 
 
-    const [showModal, setShowModal] = useState(false);
+    // const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         // This effect will run only once or when movieId changes
@@ -52,28 +53,25 @@ const NewMovieDetails = () => {
         }
         const quantity = parseInt(movieQty, 10);
         if (quantity <= 0 || isNaN(quantity)) {
-            alert('Please enter a valid number of tickets.');
+            setModalInfo({ isOpen: true, message: 'Please enter a valid number of tickets.', type: 'error' });
             return;
         }
-        if (ticketsLeft <= 0) {
-            alert('Sorry, no tickets left!');
+        if (ticketsLeft <= 0 || quantity > ticketsLeft) {
+            setModalInfo({ isOpen: true, message: `Not enough tickets available. Only ${ticketsLeft} tickets left.`, type: 'error' });
             return;
         }
-        if (quantity > ticketsLeft) {
-            alert(`Not enough tickets available. Only ${ticketsLeft} tickets left.`);
-            return;
-        }
+    
         setLoading(true);
         setTimeout(() => {
             const newTicketsLeft = ticketsLeft - quantity;
             localStorage.setItem(`ticketsLeft-${movieId}`, newTicketsLeft.toString());
             setTicketsLeft(newTicketsLeft);
             setLoading(false);
-            setShowModal(true);
+            setModalInfo({ isOpen: true, message: 'Purchase successful!', type: 'success' });
             setTimeout(() => {
-                setShowModal(false);
-                navigate('/'); // Redirect to home after showing modal
-            }, 3000); // Show modal for 3 seconds
+                setModalInfo({ ...modalInfo, isOpen: false });
+                navigate('/');
+            }, 5000);
         }, 2000);
     };
     
@@ -191,11 +189,12 @@ const NewMovieDetails = () => {
           </div>
         </section>
       )}
-       <SuccessModal
-        isOpen={showModal}
-        onClose={() => setShowModal(false)}
-        message="Ticket purchased successfully!"
-      />
+        <SuccessModal 
+            isOpen={modalInfo.isOpen}
+            onClose={() => setModalInfo({ ...modalInfo, isOpen: false })}
+            message={modalInfo.message}
+            type={modalInfo.type}
+        />
     </>
   );
 };
