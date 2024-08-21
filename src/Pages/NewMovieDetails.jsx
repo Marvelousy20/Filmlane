@@ -33,9 +33,16 @@ const NewMovieDetails = () => {
         return storedTickets ? parseInt(storedTickets, 10) : 50;
     });
     const [modalInfo, setModalInfo] = useState({ isOpen: false, message: '', type: 'success' });
+    const [email, setEmail] = useState('');
 
-
-    // const [showModal, setShowModal] = useState(false);
+    const handleEmailSubmit = () => {
+        if (!email || !email.includes("@")) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+        // Proceed with the actual ticket buying process
+        buyTicket();
+    };
 
     useEffect(() => {
         // This effect will run only once or when movieId changes
@@ -45,14 +52,14 @@ const NewMovieDetails = () => {
         }
     }, [movieId]);
   
-
+    
     const buyTicket = async () => {
+        const quantity = parseInt(movieQty, 10);
         if (!currentUser) {
             navigate("/sign-in");
             return;
         }
-        const quantity = parseInt(movieQty, 10);
-        if (quantity <= 0 || isNaN(quantity)) {
+        if (!quantity || quantity <= 0) {
             setModalInfo({ isOpen: true, message: 'Please enter a valid number of tickets.', type: 'error' });
             return;
         }
@@ -60,21 +67,21 @@ const NewMovieDetails = () => {
             setModalInfo({ isOpen: true, message: `Not enough tickets available. Only ${ticketsLeft} tickets left.`, type: 'error' });
             return;
         }
-    
+
         setLoading(true);
         setTimeout(() => {
             const newTicketsLeft = ticketsLeft - quantity;
             localStorage.setItem(`ticketsLeft-${movieId}`, newTicketsLeft.toString());
             setTicketsLeft(newTicketsLeft);
             setLoading(false);
-            setModalInfo({ isOpen: true, message: 'Purchase successful!', type: 'success' });
+            setModalInfo({ isOpen: true, message: 'Purchase successful! Ticket sent to your email.', type: 'success' });
             setTimeout(() => {
                 setModalInfo({ ...modalInfo, isOpen: false });
                 navigate('/');
-            }, 5000);
+            }, 3000);
         }, 2000);
     };
-    
+
 
   return (
     <>
@@ -159,7 +166,10 @@ const NewMovieDetails = () => {
                         <input
                           value={movieQty}
                         //   onChange={(e) => setMovieQty(e.target.value)}
-                        onChange={(e) => setMovieQty(Math.max(1, parseInt(e.target.value, 10) || 0))} 
+                        onChange={(e) => {
+                            const value = e.target.value;
+                            setMovieQty(value ? Math.max(1, parseInt(value, 10)) : '');
+                        }}
                         min="1"
                           type="number"
                           className="outline-white rounded-lg w-12 text-black pl-2"
@@ -177,7 +187,7 @@ const NewMovieDetails = () => {
                   <p class="text">Streaming Channels</p>
                 </div>
 
-                <button class="btn btn-primary" onClick={buyTicket}>
+                <button class="btn btn-primary" onClick={() => setModalInfo({ isOpen: true, message: 'Enter your email to receive the ticket.', type: 'email' })}>
                   <IonIcon icon={ticketOutline}></IonIcon>
 
                   <span>{loading ? <AuthLoader /> : "Buy Ticket"}</span>
@@ -194,6 +204,9 @@ const NewMovieDetails = () => {
             onClose={() => setModalInfo({ ...modalInfo, isOpen: false })}
             message={modalInfo.message}
             type={modalInfo.type}
+            onSubmitEmail={handleEmailSubmit}
+            email={email}
+            setEmail={setEmail}
         />
     </>
   );
