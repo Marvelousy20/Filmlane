@@ -7,7 +7,8 @@ import SignUp from "./Layout/User/SignUp";
 import Login from "./Layout/User/Login";
 import UploadMovie from "./Pages/UploadMovie";
 import MovieRoute from "./Pages/MovieRoute";
-import MovieDetails from "./Pages/MovieDetails";
+// import MovieDetails from "./Pages/MovieDetails";
+import NewMovieDetails from "./Pages/NewMovieDetails";
 import { AuthProvider } from "./store/AuthContext";
 import ShowingMovies from "./Layout/ShowingMovies";
 import Cart from "./Pages/Cart";
@@ -29,7 +30,8 @@ function App() {
           element: <MovieRoute />,
           children: [
             { index: true, element: <ShowingMovies /> },
-            { path: ":movieId", element: <MovieDetails /> },
+            // { path: ":movieId", element: <MovieDetails /> },
+            { path: ":movieId", element: <NewMovieDetails /> },
             { path: ":movieId/cart", element: <Cart /> },
           ],
         },

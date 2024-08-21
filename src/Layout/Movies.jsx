@@ -5,11 +5,72 @@ import upcoming2 from "../assets/upcoming-2.png";
 import upcoming3 from "../assets/upcoming-3.png";
 import upcoming4 from "../assets/upcoming-4.png";
 import ShowingMovies from "./ShowingMovies";
+import { Link } from "react-router-dom";
 
-const Movies = () => {
+export const movies = [
+  {
+    id: 1,
+    movieTitle: "The Northman",
+    movieImage: upcoming1,
+    year: "2022",
+    duration: "137",
+    rating: "8.5",
+    quality: "HD",
+    movieDesc: "Description of The Northman...",
+    genre: "Action, Drama",
+    PG: "R",
+    cost: "15",
+    movieDate: "2022-10-05"
+  },
+  {
+    id: 2,
+    movieTitle: "Doctor Strange in the Multiverse of Madness",
+    movieImage: upcoming2,
+    year: "2022",
+    duration: "126",
+    rating: "NR",
+    quality: "4K",
+    movieDesc: "Description of Doctor Strange in the Multiverse of Madness...",
+    genre: "Fantasy, Action",
+    PG: "PG-13",
+    cost: "20",
+    movieDate: "2022-05-06"
+  },
+  {
+    id: 3,
+    movieTitle: "The Northman",
+    movieImage: upcoming3, 
+    year: "2022",
+    duration: "137",
+    rating: "8.5",
+    quality: "HD",
+    movieDesc: "Viking prince seeks revenge for his father's murder.", // Example description
+    genre: "Action, Drama",
+    PG: "R",
+    cost: "15",
+    movieDate: "2022-04-22" 
+  },
+  {
+    id: 4,
+    movieTitle: "Doctor Strange in the Multiverse of Madness",
+    movieImage: upcoming4, 
+    year: "2022",
+    duration: "126",
+    rating: "NR",
+    quality: "4K",
+    movieDesc: "Dr. Strange explores mind-bending and dangerous alternate realities.",
+    genre: "Fantasy, Action",
+    PG: "PG-13",
+    cost: "20",
+    movieDate: "2022-05-06" 
+  }
+];
+
+const Movies = () => {  
+
   return (
     <>
-      {/* <section class="upcoming" id="movies">
+      <section class="upcoming" id="movies">
         <div class="container">
           <div class="flex-wrapper">
             <div class="title-wrapper">
@@ -25,8 +86,35 @@ const Movies = () => {
             </ul>
           </div>
 
-          <ul class="movies-list  has-scrollbar">
-            <li>
+          <ul class="movies-list has-scrollbar">
+            {movies.map((movie) => (
+              <li key={movie.id}>
+                <div className="movie-card">
+                  <Link to={`/movies/${movie.id}`}>
+                    <figure className="card-banner">
+                      <img src={movie.movieImage} alt={`${movie.movieTitle} movie poster`} />
+                    </figure>
+                    <div className="title-wrapper">
+                      <h3 className="card-title">{movie.movieTitle}</h3>
+                    </div>
+                    <time datetime={movie.year} className="text-white">{movie.year}</time>
+                  </Link>
+                  <div className="card-meta">
+                    <div className="badge badge-outline">{movie.quality}</div>
+                    <div className="duration">
+                      <IonIcon icon={timeOutline} />
+                      <time datetime={`PT${movie.duration}M`}>{movie.duration} min</time>
+                    </div>
+                    <div className="rating">
+                      <IonIcon icon={star} />
+                      <data>{movie.rating}</data>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            ))}
+
+            {/* <li>
               <div class="movie-card">
                 <a href="/">
                   <figure class="card-banner">
@@ -58,9 +146,9 @@ const Movies = () => {
                   </div>
                 </div>
               </div>
-            </li>
+            </li> */}
 
-            <li>
+            {/* <li>
               <div class="movie-card">
                 <a href="/">
                   <figure class="card-banner">
@@ -97,9 +185,9 @@ const Movies = () => {
                   </div>
                 </div>
               </div>
-            </li>
+            </li> */}
 
-            <li>
+            {/* <li>
               <div class="movie-card">
                 <a href="./movie-details.html">
                   <figure class="card-banner">
@@ -131,9 +219,9 @@ const Movies = () => {
                   </div>
                 </div>
               </div>
-            </li>
+            </li> */}
 
-            <li>
+            {/* <li>
               <div class="movie-card">
                 <a href="./movie-details.html">
                   <figure class="card-banner">
@@ -170,11 +258,11 @@ const Movies = () => {
                   </div>
                 </div>
               </div>
-            </li>
+            </li> */}
           </ul>
         </div>
-      </section> */}
-      <ShowingMovies />
+      </section>
+      {/* <ShowingMovies /> */}
     </>
   );
 };
